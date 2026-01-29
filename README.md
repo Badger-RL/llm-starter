@@ -33,5 +33,7 @@ You can use at most 4 in an interactive job.
 
 4. Wait for CHTC to match you to a machine (this can take a few minutes). Once the job starts, run the demo:
 ```aiignore
+chmod +x job.sh
 ./job.sh
 ```
+You can also just copy-paste the commands from `job.sh` into your terminal, which is what I usually do when I need to add/remove commands for testing/debugging/etc.
