@@ -6,7 +6,7 @@ git clone git@github.com:Badger-RL/llm-starter.git
 ```
 We do all code development on your local machine. 
 We submit jobs from CHTC. 
-When submitting jobs, we'll only use scripts the `chtc` directory.
+When submitting jobs, we'll only use scripts the `chtc` directory. We won't run any python code the CHTC submit node.
 
 1. On your local machine, add your wandb and huggingface login info to `chtc/job.sh`
 ```aiignore

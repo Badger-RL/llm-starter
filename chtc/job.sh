@@ -38,6 +38,7 @@ cd ${CODENAME}
 #huggingface-cli login --token <your hf token>
 
 export PYTHONPATH=.:$PYTHONPATH
+git clone https://github.com/verl-project/verl.git -b v0.7.0
 pip install -e verl
 
 # You can pass a string containing a general python command to execute here
