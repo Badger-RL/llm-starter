@@ -49,7 +49,7 @@ python3 verl/examples/data_preprocess/gsm8k.py --local_save_dir ~/data/gsm8k
 PYTHONUNBUFFERED=1 python3 -m verl.trainer.main_ppo \
   data.train_files=$HOME/data/gsm8k/train.parquet \
   data.val_files=$HOME/data/gsm8k/test.parquet \
-  data.train_batch_size=256 \
+  data.train_batch_size=128 \
   data.max_prompt_length=512 \
   data.max_response_length=512 \
   actor_rollout_ref.model.path=Qwen/Qwen2.5-0.5B-Instruct \
@@ -59,7 +59,7 @@ PYTHONUNBUFFERED=1 python3 -m verl.trainer.main_ppo \
   actor_rollout_ref.rollout.name=vllm \
   actor_rollout_ref.rollout.log_prob_micro_batch_size_per_gpu=8 \
   actor_rollout_ref.rollout.tensor_model_parallel_size=1 \
-  actor_rollout_ref.rollout.gpu_memory_utilization=0.4 \
+  actor_rollout_ref.rollout.gpu_memory_utilization=0.8 \
   actor_rollout_ref.ref.log_prob_micro_batch_size_per_gpu=4 \
   critic.optim.lr=1e-5 \
   critic.model.path=Qwen/Qwen2.5-0.5B-Instruct \
