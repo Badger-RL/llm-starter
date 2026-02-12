@@ -27,18 +27,30 @@ export RAY_TMPDIR=/tmp/ray_$USER
 
 # fetch code from /staging/
 CODENAME=llm-starter
-USER=ncorrado
+USER=nbag
 cp /staging/${USER}/${CODENAME}.tar.gz .
 tar -xzf ${CODENAME}.tar.gz
 rm ${CODENAME}.tar.gz
 cd ${CODENAME}
 
-#wandb login <your wandb key>
-#huggingface-cli login --token <your hf token>
+if [ -f .env ]; then
+    set -a  # Automatically export all variables defined in the file
+    source .env
+    set +a
+else
+    echo "Error: .env file not found!"
+    exit 1
+fi
+
+wandb login $WANDB_API_KEY
+hf auth login --token $HF_TOKEN
 
 export PYTHONPATH=.:$PYTHONPATH
 git clone https://github.com/verl-project/verl.git -b v0.7.0
 pip install -e verl
+
+# Monkeypatch main_ppo.py to fix the "I have no name!" crash automatically
+sed -i '1i import getpass\ngetpass.getuser = lambda: "chtc_user"' verl/verl/trainer/main_ppo.py
 
 # You can pass a string containing a general python command to execute here
 #$cmd

@@ -5,7 +5,7 @@ tar --exclude='.git' \
     --exclude='.idea'  \
     -czvf ${f}.tar.gz $f
 
-USER="ncorrado"
+USER="nbag"
 HOSTNAME="ap2001.chtc.wisc.edu"
 scp ${f}.tar.gz ${USER}@${HOSTNAME}:/staging/${USER}
 rm ${f}.tar.gz
