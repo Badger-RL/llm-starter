@@ -25,22 +25,19 @@ export NCCL_P2P_DISABLE=1
 export OUTLINES_CACHE_DIR='/tmp/.outlines'
 export RAY_TMPDIR=/tmp/ray_$USER
 
-# fetch code from /staging/
-CODENAME=llm-starter
-USER=nbag
-cp /staging/${USER}/${CODENAME}.tar.gz .
-tar -xzf ${CODENAME}.tar.gz
-rm ${CODENAME}.tar.gz
-cd ${CODENAME}
-
 if [ -f .env ]; then
     set -a  # Automatically export all variables defined in the file
     source .env
     set +a
-else
-    echo "Error: .env file not found!"
-    exit 1
 fi
+
+# fetch code from /staging/
+CODENAME=llm-starter
+USER=${CHTC_USER}
+cp /staging/${USER}/${CODENAME}.tar.gz .
+tar -xzf ${CODENAME}.tar.gz
+rm ${CODENAME}.tar.gz
+cd ${CODENAME}
 
 wandb login $WANDB_API_KEY
 hf auth login --token $HF_TOKEN
